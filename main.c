@@ -77,9 +77,19 @@ return next;
 
 audiostate_t glbAudioState = IDLE;
 
+uint16_t thissample = 0;
+
 uint16_t processSample(uint16_t x) {
     // the FSM controls the value of dtmfcode (0 .. 15)
     glbAudioState = next_state(glbAudioState);
+
+    thissample++;
+    if (thissample == 1024) {
+        thissample = 0;
+        xlaudio_debugpinhigh();
+    } else {
+        xlaudio_debugpinlow();
+    }
 
     // the DTMF generator converts the code to a sine sample
     int q = outputsample(dtmfcode / 4, dtmfcode % 4);
