@@ -94,7 +94,7 @@ uint16_t processSample(uint16_t x) {
     // the DTMF generator converts the code to a sine sample
     int q = outputsample(dtmfcode / 4, dtmfcode % 4);
 
-    // the DTMF sample is mapped to a 500mV peak-to-peak waveform
+    // the DTMF sample is mapped to a 1.618V peak-to-peak waveform
     return (8192 + q / 16);
 }
 
