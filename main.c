@@ -80,7 +80,7 @@ audiostate_t glbAudioState = IDLE;
 uint16_t thissample = 0;
 
 uint16_t processSample(uint16_t x) {
-    // the FSM controls the value of dtmfcode (0 .. 15)
+    // The FSM controls the value of dtmfcode (0 .. 15)
     glbAudioState = next_state(glbAudioState);
 
     thissample++;
@@ -91,7 +91,7 @@ uint16_t processSample(uint16_t x) {
         xlaudio_debugpinlow();
     }
 
-    // the DTMF generator converts the code to a sine sample
+    // The DTMF generator converts the code to a sine sample
     int q = outputsample(dtmfcode / 4, dtmfcode % 4);
 
     // the DTMF sample is mapped to a 1.618V peak-to-peak waveform
